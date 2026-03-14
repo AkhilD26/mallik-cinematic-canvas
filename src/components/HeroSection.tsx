@@ -54,7 +54,7 @@ const HeroSection = () => {
             initial={{ y: "100%" }}
             animate={{ y: 0 }}
             transition={{ delay: 0.7, duration: 1, ease: "circOut" }}
-            className="font-display text-5xl md:text-8xl lg:text-9xl font-bold text-foreground leading-[0.9] tracking-tighter"
+            className="font-display text-[clamp(3.5rem,15vw,9rem)] font-bold text-foreground leading-[0.85] tracking-tighter"
           >
             F8<span className="gold-text-gradient italic">PRO</span>
           </motion.h1>
@@ -85,13 +85,13 @@ const HeroSection = () => {
         >
           <a
             href="#portfolio"
-            className="gold-gradient text-primary-foreground px-10 py-4 rounded-full font-body text-xs tracking-[0.2em] uppercase hover-glow transition-all"
+            className="gold-gradient text-primary-foreground px-10 py-4 rounded-full font-body text-[0.65rem] tracking-[0.2em] uppercase hover-glow transition-all text-center w-full sm:w-auto"
           >
             Exploration
           </a>
           <a
             href="#contact"
-            className="bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-4 rounded-full font-body text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-all"
+            className="bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-4 rounded-full font-body text-[0.65rem] tracking-[0.2em] uppercase hover:bg-white/10 transition-all text-center w-full sm:w-auto"
           >
             Consultation
           </a>

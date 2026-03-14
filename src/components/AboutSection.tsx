@@ -35,10 +35,10 @@ const AboutSection = () => {
             </motion.div>
             
             <motion.div
-              initial={{ opacity: 0, x: 100, y: 100 }}
+              initial={{ opacity: 0, x: 50, y: 50 }}
               animate={inView ? { opacity: 1, x: 0, y: 0 } : {}}
               transition={{ duration: 1.2, delay: 0.5, ease: "circOut" }}
-              className="absolute -bottom-16 -right-8 md:right-[-4rem] w-64 h-80 z-20 rounded-2xl overflow-hidden shadow-[-20px_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
+              className="absolute -bottom-10 -right-4 sm:-bottom-16 sm:-right-8 md:right-[-4rem] w-40 sm:w-64 h-52 sm:h-80 z-20 rounded-2xl overflow-hidden shadow-[-20px_20px_50px_rgba(0,0,0,0.5)] border border-white/10"
             >
               <img src={portrait1} alt="Portrait work" className="w-full h-full object-cover" />
               <div className="shimmer-overlay" />
@@ -68,7 +68,7 @@ const AboutSection = () => {
                 transition={{ duration: 0.8, delay: 0.2 }}
                 className="font-display text-4xl md:text-6xl font-bold text-foreground leading-tight"
               >
-                Philosophy of <span className="gold-text-gradient italic">Light</span>
+                Philosophy of <span className="gold-text-gradient italic">Craft</span>
               </motion.h2>
             </div>
 
