@@ -1,6 +1,6 @@
-# Malik Studios - Cinematic Canvas
+# F8pro - Cinematic Canvas
 
-A premium web application for Malik Studios, built with modern web technologies.
+A premium web application for F8pro, built with modern web technologies.
 
 ## Technologies Used
 

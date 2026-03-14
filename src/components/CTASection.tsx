@@ -27,7 +27,7 @@ const CTASection = () => {
           transition={{ duration: 0.8, delay: 0.1 }}
           className="font-display text-3xl md:text-5xl lg:text-6xl font-bold text-foreground mb-6"
         >
-          Book Your <span className="gold-text-gradient">Photoshoot</span> Today
+          Book Your <span className="gold-text-gradient drop-shadow-sm">Photoshoot</span> Today
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -44,15 +44,15 @@ const CTASection = () => {
           className="flex flex-col sm:flex-row gap-4 justify-center"
         >
           <a
-            href="tel:+919949142891"
-            className="flex items-center justify-center gap-2 gold-gradient text-primary-foreground px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover:opacity-90 transition-opacity"
+            href="tel:+918897888811"
+            className="flex items-center justify-center gap-2 gold-gradient text-primary-foreground px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover-glow transition-all"
           >
             <Phone size={16} />
             Call Now
           </a>
           <a
             href="#contact"
-            className="flex items-center justify-center gap-2 border border-primary text-primary px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            className="flex items-center justify-center gap-2 border border-primary text-primary px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground hover-glow transition-all duration-300"
           >
             <Calendar size={16} />
             Book Appointment

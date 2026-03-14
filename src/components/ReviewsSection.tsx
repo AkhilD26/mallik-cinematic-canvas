@@ -4,28 +4,18 @@ import { Star, ChevronLeft, ChevronRight, Quote } from "lucide-react";
 
 const reviews = [
   {
-    name: "Deepika Vangapalli",
-    text: "I had my interview photos taken here and absolutely loved the results. The pictures looked very professional.",
+    name: "pavanK lenin",
+    text: "Hello PAVAN K LENIN here, just i would like to share some thing about f8pro, they are Mad about his Fashion, good çommunication, Photography was next level, Well experienced.",
     rating: 5,
   },
   {
-    name: "Dr. Shireesha",
-    text: "The studio is well equipped with modern high-end cameras. The photographer is polite and guides every pose.",
+    name: "Dolly silpakala.d.krupalina",
+    text: "f8pro studio is just amazing. My daughter Siyona drums recoding was done in this wonderful studio. I am very glad and thankful to the team. My special thanks to Sada garu. Throughout my life i remember this moment. Sada garu is very passionate and marvelous photographer.",
     rating: 5,
   },
   {
-    name: "MamaiKya Lanka",
-    text: "They restored our old photos beautifully. The quality came out clear and amazing.",
-    rating: 5,
-  },
-  {
-    name: "Ravi Kumar",
-    text: "Best wedding photography experience. Every moment was captured with perfection and creativity.",
-    rating: 5,
-  },
-  {
-    name: "Priya Sharma",
-    text: "Mr. Mallik is incredibly talented and made us feel so comfortable. The results exceeded our expectations!",
+    name: "Jaya Palakollu",
+    text: "Best place for photoshoots.. good ambiance and great people..❤️",
     rating: 5,
   },
 ];

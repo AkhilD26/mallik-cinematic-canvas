@@ -8,12 +8,12 @@ const Footer = () => {
           {/* Brand */}
           <div>
             <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-              Mallik <span className="text-primary">Studios</span>
+              F8<span className="text-primary">pro</span>
             </h3>
-            <p className="font-elegant text-lg text-primary italic mb-4">మల్లిక్ స్టూడియోస్</p>
+            <p className="font-elegant text-lg text-primary italic mb-4">F8pro స్టూడియోస్</p>
             <p className="font-body text-sm text-muted-foreground leading-relaxed">
               Capturing Moments. Creating Memories.<br />
-              Professional photography studio in Vijayawada.
+              Professional photography studio in Hyderabad.
             </p>
           </div>
 
@@ -39,14 +39,14 @@ const Footer = () => {
             <div className="space-y-3">
               <div className="flex items-start gap-3">
                 <Phone size={16} className="text-primary mt-1 shrink-0" />
-                <a href="tel:+919949142891" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +91 99491 42891
+                <a href="tel:+918897888811" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
+                  +91 88978 88811
                 </a>
               </div>
               <div className="flex items-start gap-3">
                 <MapPin size={16} className="text-primary mt-1 shrink-0" />
                 <p className="font-body text-sm text-muted-foreground">
-                  No. 17, NVKR Towers, Vijayawada, AP – 520010
+                  Kamalapuri Colony, Jubilee Hills, Hyderabad, Telangana 500073
                 </p>
               </div>
             </div>
@@ -68,7 +68,7 @@ const Footer = () => {
 
         <div className="section-divider w-full my-10" />
         <p className="font-body text-xs text-muted-foreground text-center tracking-wider">
-          © {new Date().getFullYear()} Mallik Studios. All rights reserved.
+          © {new Date().getFullYear()} F8pro. All rights reserved.
         </p>
       </div>
     </footer>

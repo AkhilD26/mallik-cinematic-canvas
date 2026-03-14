@@ -7,12 +7,12 @@ const HeroSection = () => {
     <section id="home" className="relative h-screen w-full overflow-hidden">
       {/* Background */}
       <motion.div
-        initial={{ scale: 1.2 }}
-        animate={{ scale: 1 }}
-        transition={{ duration: 2, ease: "easeOut" }}
+        initial={{ scale: 1.1, opacity: 0 }}
+        animate={{ scale: 1, opacity: 1 }}
+        transition={{ duration: 1.5, ease: "easeOut" }}
         className="absolute inset-0"
       >
-        <img src={heroBg} alt="Mallik Studios" className="w-full h-full object-cover" />
+        <img src={heroBg} alt="F8pro Studio" className="w-full h-full object-cover" />
       </motion.div>
 
       {/* Overlays */}
@@ -37,7 +37,7 @@ const HeroSection = () => {
           className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground max-w-4xl leading-tight"
         >
           Capture Your Best Moments With{" "}
-          <span className="gold-text-gradient">Mallik Studios</span>
+          <span className="gold-text-gradient">F8pro</span>
         </motion.h1>
 
         <motion.p

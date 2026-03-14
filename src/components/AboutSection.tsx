@@ -5,8 +5,8 @@ import studioInterior from "@/assets/studio-interior.jpg";
 import portrait1 from "@/assets/portrait-1.jpg";
 
 const stats = [
-  { icon: Star, value: "4.9", label: "Rating" },
-  { icon: Users, value: "533+", label: "Happy Clients" },
+  { icon: Star, value: "4.8", label: "Rating" },
+  { icon: Users, value: "92+", label: "Reviews" },
   { icon: Camera, value: "10+", label: "Years Experience" },
   { icon: Award, value: "6+", label: "Services" },
 ];
@@ -30,7 +30,7 @@ const AboutSection = () => {
             >
               <img
                 src={studioInterior}
-                alt="Mallik Studios Interior"
+                alt="F8pro Studio Interior"
                 className="w-full h-[500px] object-cover rounded-sm"
               />
             </motion.div>
@@ -63,7 +63,7 @@ const AboutSection = () => {
               transition={{ duration: 0.8, delay: 0.1 }}
               className="font-display text-3xl md:text-5xl font-bold text-foreground mb-6"
             >
-              About <span className="gold-text-gradient">Mallik Studios</span>
+              About <span className="gold-text-gradient">F8pro</span>
             </motion.h2>
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -72,14 +72,14 @@ const AboutSection = () => {
               className="space-y-4 text-muted-foreground font-body leading-relaxed"
             >
               <p>
-                Mallik Studios is one of the most trusted photography studios in Vijayawada
-                with a 4.9 rating from 500+ happy clients. The studio is equipped with
-                modern high-end cameras and professional infrastructure to deliver
-                exceptional photo quality.
+                F8pro is a premier photography studio located in Jubilee Hills, Hyderabad.
+                With a 4.8 rating and 92+ reviews, we are dedicated to capturing your most
+                precious moments with cinematic excellence.
               </p>
               <p>
-                Photographer Mr. Mallik is known for his friendly nature and professional
-                guidance, helping clients feel comfortable during every photoshoot.
+                Lead photographer Sada garu is known for his passionate and marvelous
+                work, providing professional guidance to make every client feel comfortable
+                and shine in front of the camera.
               </p>
             </motion.div>
 

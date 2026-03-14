@@ -10,7 +10,7 @@ const ContactSection = () => {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const msg = `Hi, I'm ${formData.name}. ${formData.message} Contact: ${formData.phone || formData.email}`;
-    window.open(`https://wa.me/919949142891?text=${encodeURIComponent(msg)}`, "_blank");
+    window.open(`https://wa.me/918897888811?text=${encodeURIComponent(msg)}`, "_blank");
   };
 
   return (
@@ -42,9 +42,9 @@ const ContactSection = () => {
               <div>
                 <h4 className="font-display text-lg text-foreground mb-1">Our Location</h4>
                 <p className="font-body text-sm text-muted-foreground leading-relaxed">
-                  No. 17, NVKR Towers, P.B. Siddhartha College Rd,<br />
-                  Siddhartha Nagar, Moghalrajpuram,<br />
-                  Vijayawada, Andhra Pradesh – 520010
+                  Kamalapuri Colony Community Hall, 205 4th,<br />
+                  Srinagar Colony Main Rd, Jubilee Hills,<br />
+                  Hyderabad, Telangana 500073
                 </p>
               </div>
             </div>
@@ -53,7 +53,7 @@ const ContactSection = () => {
               <div>
                 <h4 className="font-display text-lg text-foreground mb-1">Phone</h4>
                 <a href="tel:+919949142891" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +91 99491 42891
+                  +91 88978 88811
                 </a>
               </div>
             </div>
@@ -61,21 +61,21 @@ const ContactSection = () => {
               <Clock size={24} className="text-primary mt-1 shrink-0" />
               <div>
                 <h4 className="font-display text-lg text-foreground mb-1">Open Hours</h4>
-                <p className="font-body text-sm text-muted-foreground">9:00 AM – 9:30 PM</p>
+                <p className="font-body text-sm text-muted-foreground">9:00 AM – 9:00 PM</p>
               </div>
             </div>
 
             {/* Google Map */}
             <div className="rounded-sm overflow-hidden border border-border h-64">
               <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3825.5!2d80.6208!3d16.5062!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMTbCsDMwJzIyLjMiTiA4MMKwMzcnMTQuOSJF!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3806.452601955113!2d78.43588231533385!3d17.433433605934526!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb90d63ced6cf1%3A0x6b3a0cc332cb5557!2sKamalapuri%20Colony%20Community%20Hall!5e0!3m2!1sen!2sin!4v1710410000000!5m2!1sen!2sin"
                 width="100%"
                 height="100%"
                 style={{ border: 0 }}
                 allowFullScreen
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="Mallik Studios Location"
+                title="F8pro Location"
               />
             </div>
           </motion.div>

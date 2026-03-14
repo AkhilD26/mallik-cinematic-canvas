@@ -32,7 +32,7 @@ const Navbar = () => {
     >
       <div className="container mx-auto px-6 py-4 flex items-center justify-between">
         <a href="#home" className="font-display text-2xl font-bold text-foreground">
-          Mallik <span className="text-primary">Studios</span>
+          F8<span className="text-primary">pro</span>
         </a>
 
         {/* Desktop */}
@@ -47,7 +47,7 @@ const Navbar = () => {
             </a>
           ))}
           <a
-            href="tel:+919949142891"
+            href="tel:+918897888811"
             className="flex items-center gap-2 gold-gradient text-primary-foreground px-5 py-2.5 rounded-sm font-body text-sm tracking-wider uppercase hover:opacity-90 transition-opacity"
           >
             <Phone size={14} />
@@ -85,7 +85,7 @@ const Navbar = () => {
                 </a>
               ))}
               <a
-                href="tel:+919949142891"
+                href="tel:+918897888811"
                 className="flex items-center gap-2 gold-gradient text-primary-foreground px-5 py-2.5 rounded-sm font-body text-sm tracking-wider uppercase w-fit"
               >
                 <Phone size={14} />
