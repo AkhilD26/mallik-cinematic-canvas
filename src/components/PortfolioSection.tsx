@@ -10,17 +10,17 @@ import family1 from "@/assets/family-1.jpg";
 import restoration1 from "@/assets/restoration-1.jpg";
 import heroBg from "@/assets/hero-bg.jpg";
 
-const categories = ["All", "Portraits", "Wedding", "Studio", "Events", "Restoration"];
+const categories = ["All", "Weddings", "Pre Wedding", "Portraits", "Events", "Cinematic Films"];
 
 const portfolioItems = [
-  { src: portrait1, category: "Portraits", title: "Grace in Shadow", size: "tall" },
-  { src: wedding1, category: "Wedding", title: "Eternal Vows", size: "wide" },
-  { src: professional1, category: "Portraits", title: "The Architect", size: "small" },
-  { src: event1, category: "Events", title: "Vibrant Pulse", size: "small" },
-  { src: studioInterior, category: "Studio", title: "The Sanctuary", size: "wide" },
+  { src: wedding1, category: "Weddings", title: "Eternal Vows", size: "tall" },
+  { src: portrait1, category: "Portraits", title: "Grace in Shadow", size: "small" },
+  { src: professional1, category: "Pre Wedding", title: "The Promise", size: "small" },
+  { src: event1, category: "Events", title: "Vibrant Pulse", size: "wide" },
+  { src: studioInterior, category: "Cinematic Films", title: "The Sanctuary", size: "small" },
   { src: family1, category: "Portraits", title: "Rooted Legacies", size: "tall" },
-  { src: restoration1, category: "Restoration", title: "Echoes Refined", size: "small" },
-  { src: heroBg, category: "Studio", title: "Master's Canvas", size: "small" },
+  { src: restoration1, category: "Weddings", title: "Whispered Promises", size: "small" },
+  { src: heroBg, category: "Events", title: "Grand Celebration", size: "wide" },
 ];
 
 const PortfolioSection = () => {
@@ -34,21 +34,21 @@ const PortfolioSection = () => {
     : portfolioItems.filter((item) => item.category === activeCategory);
 
   return (
-    <section id="portfolio" className="py-24 md:py-32 bg-background relative">
-      <div className="section-divider w-full mb-24" />
-      <div className="container mx-auto px-6" ref={ref}>
+    <section id="portfolio" className="py-24 md:py-40">
+      <div className="container mx-auto px-6 md:px-12" ref={ref}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="mb-24"
+          className="text-center mb-20"
         >
-          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-8">Visual Anthology</p>
-          <h2 className="text-huge text-foreground">
-            THE <span className="gold-text-gradient italic">GALLERY</span>
+          <p className="font-body text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground mb-6">Gallery</p>
+          <h2 className="text-editorial">
+            Showcasing <span className="italic">Timeless Imagery</span> That Resonates With Authenticity
           </h2>
-          <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40 mt-4">
-            A curated selection of our finest work
+          <p className="font-body text-[0.6rem] tracking-[0.25em] uppercase text-muted-foreground mt-6">
+            Moments · Details · Emotions
           </p>
         </motion.div>
 
@@ -57,26 +57,23 @@ const PortfolioSection = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 1, delay: 0.2 }}
-          className="flex flex-wrap gap-6 mb-16 border-b border-white/5 pb-8"
+          className="flex flex-wrap justify-center gap-8 mb-16"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`font-body text-[0.65rem] tracking-[0.3em] uppercase transition-all duration-300 relative group overflow-hidden ${
-                activeCategory === cat ? "text-primary" : "text-muted-foreground hover:text-foreground"
+              className={`font-body text-[0.65rem] tracking-[0.2em] uppercase transition-all duration-300 luxury-link pb-1 ${
+                activeCategory === cat ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {cat}
-              <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-primary transition-transform duration-500 ${
-                activeCategory === cat ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
-              }`} />
             </button>
           ))}
         </motion.div>
 
-        {/* Bespoke Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[300px]">
+        {/* Masonry Grid */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 auto-rows-[250px] md:auto-rows-[300px]">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div
@@ -85,28 +82,18 @@ const PortfolioSection = () => {
                 initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
                 exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
-                className={`group relative cursor-pointer overflow-hidden rounded-2xl hover-glow ${
-                  item.size === "tall" ? "lg:row-span-2" : 
-                  item.size === "wide" ? "lg:col-span-2" : ""
+                transition={{ duration: 0.5, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                className={`img-hover cursor-pointer rounded-sm ${
+                  item.size === "tall" ? "row-span-2" :
+                  item.size === "wide" ? "col-span-2" : ""
                 }`}
                 onClick={() => setLightbox(item.src)}
               >
-                <img
-                  src={item.src}
-                  alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-1000 grayscale-[40%] group-hover:grayscale-0 group-hover:scale-110"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
-                  <div className="overflow-hidden">
-                    <motion.p className="font-display text-2xl text-foreground mb-1 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                      {item.title}
-                    </motion.p>
-                  </div>
-                  <div className="overflow-hidden">
-                    <motion.p className="font-body text-[0.6rem] tracking-[0.3em] uppercase text-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                      {item.category} — View
-                    </motion.p>
+                <img src={item.src} alt={item.title} className="w-full h-full object-cover" />
+                <div className="overlay">
+                  <div className="overlay-text">
+                    <p className="font-display text-xl text-white mb-1">{item.title}</p>
+                    <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-white/70">{item.category}</p>
                   </div>
                 </div>
               </motion.div>
@@ -122,19 +109,19 @@ const PortfolioSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-background/95 flex items-center justify-center p-4"
+            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
             onClick={() => setLightbox(null)}
           >
-            <button className="absolute top-6 right-6 text-foreground hover:text-primary transition-colors">
+            <button className="absolute top-6 right-6 text-white hover:text-white/70 transition-colors">
               <X size={32} />
             </button>
             <motion.img
-              initial={{ scale: 0.8 }}
-              animate={{ scale: 1 }}
-              exit={{ scale: 0.8 }}
+              initial={{ scale: 0.85, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.85, opacity: 0 }}
               src={lightbox}
               alt="Portfolio"
-              className="max-w-full max-h-[85vh] object-contain rounded-sm"
+              className="max-w-full max-h-[85vh] object-contain"
             />
           </motion.div>
         )}

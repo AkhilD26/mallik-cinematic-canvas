@@ -5,27 +5,33 @@ import ServicesSection from "@/components/ServicesSection";
 import StatsSection from "@/components/StatsSection";
 import PortfolioSection from "@/components/PortfolioSection";
 import ReviewsSection from "@/components/ReviewsSection";
-import CTASection from "@/components/CTASection";
 import ContactSection from "@/components/ContactSection";
 import Footer from "@/components/Footer";
+import { MessageCircle } from "lucide-react";
 
 const Index = () => {
   return (
     <div className="min-h-screen bg-background">
       <Navbar />
       <HeroSection />
-      <div className="cinematic-divider">
-        <span className="text-huge opacity-[0.03] pointer-events-none select-none">STORYTELLING</span>
-      </div>
       <AboutSection />
-      <div className="diagonal-divider" />
       <ServicesSection />
       <StatsSection />
       <PortfolioSection />
       <ReviewsSection />
-      <CTASection />
       <ContactSection />
       <Footer />
+
+      {/* Floating WhatsApp Button */}
+      <a
+        href="https://wa.me/918897888811"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-float"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle size={24} className="text-white" />
+      </a>
     </div>
   );
 };

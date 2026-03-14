@@ -1,72 +1,89 @@
-import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
-import { Star } from "lucide-react";
+import { motion, useInView, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
+import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const reviews = [
   {
-    name: "pavanK lenin",
-    content: "They are Mad about his Fashion, good çommunication, Photography was next level, Well experienced.",
-    rating: 5,
+    name: "PavanK Lenin",
+    content: "They are absolutely passionate about fashion and photography. The communication was excellent, and the results were next level. Truly well experienced professionals.",
   },
   {
-    name: "Dolly silpakala.d.krupalina",
-    content: "f8pro studio is just amazing. Sada garu is very passionate and marvelous photographer. Throughout my life i remember this moment.",
-    rating: 5,
+    name: "Dolly Silpakala",
+    content: "F8pro studio is just amazing. Sada garu is very passionate and a marvelous photographer. Throughout my life I will remember this moment.",
   },
   {
     name: "Jaya Palakollu",
-    content: "Best place for photoshoots.. good ambiance and great people..❤️",
-    rating: 5,
+    content: "Absolutely stunning photography. Best place for photoshoots — good ambiance and great people. Highly recommended!",
   },
 ];
 
 const ReviewsSection = () => {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
+  const [current, setCurrent] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => setCurrent((p) => (p + 1) % reviews.length), 6000);
+    return () => clearInterval(timer);
+  }, []);
 
   return (
-    <section id="reviews" className="py-32 md:py-48 bg-background relative overflow-hidden">
-      <div className="container mx-auto px-6" ref={ref}>
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl mb-20"
+    <section className="py-24 md:py-40 bg-[hsl(45,20%,96%)]">
+      <div className="container mx-auto px-6 md:px-12 max-w-4xl text-center" ref={ref}>
+        <motion.p
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 1 }}
+          className="font-body text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground mb-12"
         >
-          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-4">Testimonials</p>
-          <h2 className="font-display text-4xl md:text-7xl font-bold text-foreground leading-tight">
-            Client <span className="gold-text-gradient italic">Voices</span>
-          </h2>
-        </motion.div>
+          Testimonials
+        </motion.p>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {reviews.map((review, i) => (
+        <div className="relative min-h-[200px] flex items-center justify-center">
+          <AnimatePresence mode="wait">
             <motion.div
-              key={review.name}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
-              className="p-10 rounded-3xl glass-card border border-white/5 relative group hover:border-primary/20 transition-all duration-500"
+              key={current}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -20 }}
+              transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
+              className="absolute inset-0 flex flex-col items-center justify-center"
             >
-              <div className="flex gap-1 mb-8">
-                {[...Array(review.rating)].map((_, i) => (
-                  <Star key={i} size={14} className="fill-primary text-primary" />
-                ))}
-              </div>
-              <p className="font-body text-lg text-muted-foreground/90 leading-relaxed italic mb-8">
-                "{review.content}"
+              <p className="font-display text-xl md:text-3xl italic text-foreground leading-relaxed mb-8 px-4">
+                "{reviews[current].content}"
               </p>
-              <div className="flex items-center gap-4 border-t border-white/5 pt-8">
-                <div className="w-12 h-12 rounded-full gold-gradient flex items-center justify-center text-primary-foreground font-display text-xl font-bold">
-                  {review.name.charAt(0)}
-                </div>
-                <div>
-                  <h4 className="font-display text-lg font-semibold text-foreground">{review.name}</h4>
-                  <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-primary/60">Verified Client</p>
-                </div>
-              </div>
+              <p className="font-body text-[0.65rem] tracking-[0.3em] uppercase text-muted-foreground">
+                — {reviews[current].name}
+              </p>
             </motion.div>
-          ))}
+          </AnimatePresence>
+        </div>
+
+        {/* Navigation */}
+        <div className="flex items-center justify-center gap-8 mt-12">
+          <button
+            onClick={() => setCurrent((p) => (p - 1 + reviews.length) % reviews.length)}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ChevronLeft size={20} />
+          </button>
+          <div className="flex gap-2">
+            {reviews.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => setCurrent(i)}
+                className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                  i === current ? "bg-foreground w-6" : "bg-muted-foreground/30"
+                }`}
+              />
+            ))}
+          </div>
+          <button
+            onClick={() => setCurrent((p) => (p + 1) % reviews.length)}
+            className="text-muted-foreground hover:text-foreground transition-colors"
+          >
+            <ChevronRight size={20} />
+          </button>
         </div>
       </div>
     </section>
