@@ -19,11 +19,12 @@ const services = [
 
 const ServicesSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
     <section id="services" className="py-24 md:py-40 bg-[hsl(45,20%,96%)]">
       <div className="container mx-auto px-6 md:px-12" ref={ref}>
+        {/* Header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -31,18 +32,30 @@ const ServicesSection = () => {
           className="text-center mb-20"
         >
           <p className="font-body text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground mb-6">What We Do</p>
-          <h2 className="text-editorial">
-            Our <span className="italic">Services</span>
-          </h2>
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-editorial"
+            >
+              Our <span className="italic">Services</span>
+            </motion.h2>
+          </div>
         </motion.div>
 
+        {/* Grid with staggered row reveals */}
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-2">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 30 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.8, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
+              initial={{ opacity: 0, y: 50, scale: 0.96 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{
+                duration: 0.9,
+                delay: 0.2 + i * 0.1,
+                ease: [0.22, 1, 0.36, 1],
+              }}
               className="img-hover group relative aspect-[4/3] cursor-pointer"
             >
               <img

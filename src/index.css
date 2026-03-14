@@ -96,14 +96,14 @@
     transition: transform 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
   }
   .img-hover:hover img {
-    transform: scale(1.08);
+    transform: scale(1.1);
   }
   .img-hover .overlay {
     position: absolute;
     inset: 0;
     background: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 60%);
     opacity: 0;
-    transition: opacity 0.5s ease;
+    transition: opacity 0.35s ease;
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
@@ -115,7 +115,7 @@
   .img-hover .overlay-text {
     color: white;
     transform: translateY(20px);
-    transition: transform 0.5s ease;
+    transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
   }
   .img-hover:hover .overlay-text {
     transform: translateY(0);
@@ -138,6 +138,7 @@
   .btn-primary:hover {
     opacity: 0.85;
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
   }
   .btn-outline {
     display: inline-flex;
@@ -156,6 +157,7 @@
     background: hsl(var(--primary));
     color: hsl(var(--primary-foreground));
     transform: translateY(-2px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
   }
 
   /* Section divider */

@@ -25,7 +25,7 @@ const portfolioItems = [
 
 const PortfolioSection = () => {
   const ref = useRef(null);
-  const inView = useInView(ref, { once: true, margin: "-100px" });
+  const inView = useInView(ref, { once: true, margin: "-80px" });
   const [activeCategory, setActiveCategory] = useState("All");
   const [lightbox, setLightbox] = useState<string | null>(null);
 
@@ -44,45 +44,66 @@ const PortfolioSection = () => {
           className="text-center mb-20"
         >
           <p className="font-body text-[0.65rem] tracking-[0.4em] uppercase text-muted-foreground mb-6">Gallery</p>
-          <h2 className="text-editorial">
-            Showcasing <span className="italic">Timeless Imagery</span> That Resonates With Authenticity
-          </h2>
-          <p className="font-body text-[0.6rem] tracking-[0.25em] uppercase text-muted-foreground mt-6">
+          <div className="overflow-hidden">
+            <motion.h2
+              initial={{ y: "100%" }}
+              animate={inView ? { y: "0%" } : {}}
+              transition={{ duration: 1.2, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="text-editorial"
+            >
+              Showcasing <span className="italic">Timeless Imagery</span> That Resonates With Authenticity
+            </motion.h2>
+          </div>
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ delay: 0.5, duration: 0.8 }}
+            className="font-body text-[0.6rem] tracking-[0.25em] uppercase text-muted-foreground mt-6"
+          >
             Moments · Details · Emotions
-          </p>
+          </motion.p>
         </motion.div>
 
-        {/* Category filters */}
+        {/* Category filters with stagger */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={inView ? { opacity: 1 } : {}}
-          transition={{ duration: 1, delay: 0.2 }}
+          initial={{ opacity: 0, y: 15 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.8, delay: 0.3 }}
           className="flex flex-wrap justify-center gap-8 mb-16"
         >
-          {categories.map((cat) => (
-            <button
+          {categories.map((cat, i) => (
+            <motion.button
               key={cat}
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ duration: 0.5, delay: 0.4 + i * 0.06 }}
               onClick={() => setActiveCategory(cat)}
+              whileHover={{ y: -2 }}
               className={`font-body text-[0.65rem] tracking-[0.2em] uppercase transition-all duration-300 luxury-link pb-1 ${
                 activeCategory === cat ? "text-foreground" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {cat}
-            </button>
+            </motion.button>
           ))}
         </motion.div>
 
-        {/* Masonry Grid */}
+        {/* Masonry Grid with cinematic staggered reveal */}
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2 auto-rows-[250px] md:auto-rows-[300px]">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div
                 key={item.title}
                 layout
-                initial={{ opacity: 0, scale: 0.95 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.95 }}
-                transition={{ duration: 0.5, delay: i * 0.04, ease: [0.22, 1, 0.36, 1] }}
+                initial={{ opacity: 0, y: 60, scale: 0.94 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.94 }}
+                transition={{
+                  duration: 0.8,
+                  delay: i * 0.08,
+                  ease: [0.22, 1, 0.36, 1],
+                  layout: { duration: 0.5, ease: [0.22, 1, 0.36, 1] },
+                }}
                 className={`img-hover cursor-pointer rounded-sm ${
                   item.size === "tall" ? "row-span-2" :
                   item.size === "wide" ? "col-span-2" : ""
@@ -102,23 +123,30 @@ const PortfolioSection = () => {
         </div>
       </div>
 
-      {/* Lightbox */}
+      {/* Lightbox with cinematic transitions */}
       <AnimatePresence>
         {lightbox && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-50 bg-black/90 flex items-center justify-center p-4"
+            transition={{ duration: 0.4, ease: "easeOut" }}
+            className="fixed inset-0 z-50 bg-black/92 flex items-center justify-center p-4 backdrop-blur-sm"
             onClick={() => setLightbox(null)}
           >
-            <button className="absolute top-6 right-6 text-white hover:text-white/70 transition-colors">
-              <X size={32} />
-            </button>
+            <motion.button
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.3 }}
+              className="absolute top-6 right-6 text-white/70 hover:text-white transition-colors"
+            >
+              <X size={28} />
+            </motion.button>
             <motion.img
-              initial={{ scale: 0.85, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.85, opacity: 0 }}
+              initial={{ scale: 0.85, opacity: 0, y: 30 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: -20 }}
+              transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
               src={lightbox}
               alt="Portfolio"
               className="max-w-full max-h-[85vh] object-contain"
