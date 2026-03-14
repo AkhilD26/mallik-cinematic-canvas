@@ -1,75 +1,67 @@
-import { Phone, MapPin, Instagram, Facebook, Youtube } from "lucide-react";
+import { Instagram, Facebook, Twitter, Mail } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-darker-surface border-t border-border py-16">
-      <div className="container mx-auto px-6">
-        <div className="grid md:grid-cols-3 gap-12">
-          {/* Brand */}
-          <div>
-            <h3 className="font-display text-2xl font-bold text-foreground mb-2">
-              F8<span className="text-primary">pro</span>
-            </h3>
-            <p className="font-elegant text-lg text-primary italic mb-4">F8pro స్టూడియోస్</p>
-            <p className="font-body text-sm text-muted-foreground leading-relaxed">
-              Capturing Moments. Creating Memories.<br />
-              Professional photography studio in Hyderabad.
+    <footer className="bg-background pt-32 pb-16 border-t border-white/5 relative overflow-hidden">
+      {/* Subtle Background Text */}
+      <div className="absolute bottom-0 left-0 w-full h-[300px] pointer-events-none select-none overflow-hidden opacity-[0.02] flex items-end justify-center">
+        <span className="font-display text-[20vw] font-bold leading-none translate-y-[30%]">F8PRO</span>
+      </div>
+
+      <div className="container mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-16 mb-24">
+          <div className="lg:col-span-5">
+            <a href="#home" className="font-display text-4xl font-bold text-foreground inline-block mb-8 group">
+              F8<span className="text-primary italic group-hover:not-italic transition-all duration-500">PRO</span>
+            </a>
+            <p className="font-body text-lg text-muted-foreground/60 leading-relaxed font-light max-w-sm mb-8">
+              Crafting visual legacies through cinematic precision. 
+              Based in Jubilee Hills, Hyderabad.
             </p>
-          </div>
-
-          {/* Quick Links */}
-          <div>
-            <h4 className="font-display text-lg text-foreground mb-4">Quick Links</h4>
-            <div className="flex flex-col gap-2">
-              {["Home", "About", "Services", "Portfolio", "Reviews", "Contact"].map((link) => (
-                <a
-                  key={link}
-                  href={`#${link.toLowerCase()}`}
-                  className="font-body text-sm text-muted-foreground hover:text-primary transition-colors"
-                >
-                  {link}
-                </a>
-              ))}
-            </div>
-          </div>
-
-          {/* Contact info */}
-          <div>
-            <h4 className="font-display text-lg text-foreground mb-4">Contact Info</h4>
-            <div className="space-y-3">
-              <div className="flex items-start gap-3">
-                <Phone size={16} className="text-primary mt-1 shrink-0" />
-                <a href="tel:+918897888811" className="font-body text-sm text-muted-foreground hover:text-primary transition-colors">
-                  +91 88978 88811
-                </a>
-              </div>
-              <div className="flex items-start gap-3">
-                <MapPin size={16} className="text-primary mt-1 shrink-0" />
-                <p className="font-body text-sm text-muted-foreground">
-                  Kamalapuri Colony, Jubilee Hills, Hyderabad, Telangana 500073
-                </p>
-              </div>
-            </div>
-
-            {/* Social */}
-            <div className="flex gap-4 mt-6">
-              {[Instagram, Facebook, Youtube].map((Icon, i) => (
-                <a
-                  key={i}
-                  href="#"
-                  className="w-10 h-10 rounded-full border border-border flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all duration-300"
-                >
+            <div className="flex gap-6">
+              {[Instagram, Facebook, Twitter, Mail].map((Icon, i) => (
+                <a key={i} href="#" className="w-10 h-10 rounded-full border border-white/10 flex items-center justify-center text-muted-foreground hover:border-primary hover:text-primary transition-all duration-300">
                   <Icon size={18} />
                 </a>
               ))}
             </div>
           </div>
+
+          {/* Quick Links (now Navigation) */}
+          <div className="lg:col-span-3">
+            <h4 className="font-body text-[0.65rem] tracking-[0.3em] uppercase text-primary/60 mb-8">Navigation</h4>
+            <ul className="space-y-4">
+              {["Home", "About", "Services", "Portfolio", "Reviews"].map((item) => (
+                <li key={item}>
+                  <a href={`#${item.toLowerCase()}`} className="font-body text-sm text-muted-foreground hover:text-primary transition-colors luxury-link">
+                    {item}
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          <div className="lg:col-span-4">
+            <h4 className="font-body text-[0.65rem] tracking-[0.3em] uppercase text-primary/60 mb-8">Location</h4>
+            <p className="font-body text-sm text-muted-foreground/80 leading-relaxed font-light mb-8 max-w-[240px]">
+              Kamalapuri Colony Community Hall, 205 4th, 
+              Jubilee Hills, Hyderabad, Telangana 500073
+            </p>
+            <a href="tel:+918897888811" className="font-display text-2xl text-foreground hover:text-primary transition-colors">
+              +91 88978 88811
+            </a>
+          </div>
         </div>
 
-        <div className="section-divider w-full my-10" />
-        <p className="font-body text-xs text-muted-foreground text-center tracking-wider">
-          © {new Date().getFullYear()} F8pro. All rights reserved.
-        </p>
+        <div className="pt-16 border-t border-white/5 flex flex-col md:flex-row justify-between items-center gap-8">
+          <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40">
+            &copy; {new Date().getFullYear()} F8pro Cinematic Canvas. All rights reserved.
+          </p>
+          <div className="flex gap-8">
+            <a href="#" className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40 hover:text-primary transition-colors">Privacy Policy</a>
+            <a href="#" className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40 hover:text-primary transition-colors">Terms of Service</a>
+          </div>
+        </div>
       </div>
     </footer>
   );

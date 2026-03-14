@@ -22,44 +22,57 @@ const ServicesSection = () => {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="services" className="py-24 md:py-32 bg-dark-surface relative">
+    <section id="services" className="py-32 md:py-48 bg-darker-surface relative overflow-hidden">
+      {/* Background Decorative Gradient */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-primary/5 rounded-full blur-[120px] -translate-y-1/2 translate-x-1/2" />
+      
       <div className="container mx-auto px-6" ref={ref}>
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-2xl mb-20"
         >
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">What We Offer</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Our <span className="gold-text-gradient">Services</span>
+          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-4">Expertise</p>
+          <h2 className="font-display text-4xl md:text-7xl font-bold text-foreground leading-tight">
+            Cinematic <span className="gold-text-gradient italic">Offerings</span>
           </h2>
         </motion.div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, i) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, y: 40 }}
+              initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.6, delay: i * 0.1 }}
-              className="group relative h-80 rounded-sm overflow-hidden cursor-pointer hover-glow"
+              transition={{ duration: 0.8, delay: i * 0.1, ease: [0.22, 1, 0.36, 1] }}
+              className="group relative h-[450px] rounded-3xl overflow-hidden cursor-pointer border border-white/5 hover:border-primary/30 transition-all duration-500 glass-card"
             >
               <img
                 src={service.image}
                 alt={service.title}
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
+                className="absolute inset-0 w-full h-full object-cover grayscale-[30%] group-hover:grayscale-0 group-hover:scale-105 transition-all duration-1000"
               />
-              <div className="absolute inset-0 bg-background/60 group-hover:bg-background/80 transition-all duration-500" />
-              <div className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center">
-                <service.icon size={32} className="text-primary mb-4 transition-transform duration-300 group-hover:scale-110" />
-                <h3 className="font-display text-xl font-semibold text-foreground mb-2">{service.title}</h3>
-                <p className="font-body text-sm text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity duration-500 max-w-xs">
-                  {service.desc}
-                </p>
+              <div className="absolute inset-0 bg-gradient-to-t from-background via-background/20 to-transparent opacity-80 group-hover:opacity-60 transition-opacity duration-500" />
+              
+              <div className="absolute inset-0 p-8 flex flex-col justify-end">
+                <div className="mb-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                  <service.icon size={28} className="text-primary mb-4" />
+                  <h3 className="font-display text-2xl font-semibold text-foreground mb-4">{service.title}</h3>
+                  <p className="font-body text-sm text-muted-foreground leading-relaxed opacity-0 group-hover:opacity-100 transition-all duration-500 delay-100 max-w-xs">
+                    {service.desc}
+                  </p>
+                </div>
+                {/* Minimal Link */}
+                <div className="mt-4 overflow-hidden h-6">
+                  <span className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-primary translate-y-full group-hover:translate-y-0 transition-transform duration-500 block">
+                    Learn More —
+                  </span>
+                </div>
               </div>
-              {/* Bottom gold line */}
-              <div className="absolute bottom-0 left-0 right-0 h-[2px] gold-gradient scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left" />
+
+              {/* Shimmer Effect on Hover */}
+              <div className="shimmer-overlay opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             </motion.div>
           ))}
         </div>

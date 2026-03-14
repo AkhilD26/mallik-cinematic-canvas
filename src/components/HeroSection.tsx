@@ -1,72 +1,99 @@
-import { motion } from "framer-motion";
+import { motion, useScroll, useTransform } from "framer-motion";
+import { useRef } from "react";
 import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 
 const HeroSection = () => {
+  const containerRef = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: containerRef,
+    offset: ["start start", "end start"],
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
   return (
-    <section id="home" className="relative h-screen w-full overflow-hidden">
-      {/* Background */}
+    <section 
+      id="home" 
+      ref={containerRef}
+      className="relative h-screen w-full overflow-hidden flex items-center justify-center"
+    >
+      {/* Background with Parallax */}
       <motion.div
-        initial={{ scale: 1.1, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ duration: 1.5, ease: "easeOut" }}
-        className="absolute inset-0"
+        style={{ y, scale, opacity }}
+        className="absolute inset-0 z-0"
       >
-        <img src={heroBg} alt="F8pro Studio" className="w-full h-full object-cover" />
+        <img 
+          src={heroBg} 
+          alt="F8pro Studio" 
+          className="w-full h-full object-cover grayscale-[20%] brightness-[0.4]" 
+        />
       </motion.div>
 
       {/* Overlays */}
-      <div className="absolute inset-0 overlay-dark" />
-      <div className="absolute bottom-0 left-0 right-0 h-40 overlay-dark-bottom" />
+      <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background" />
+      <div className="absolute inset-0 bg-black/20" />
 
       {/* Content */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
+        <div className="overflow-hidden mb-6">
+          <motion.p
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.5, duration: 0.8, ease: "circOut" }}
+            className="font-body text-xs md:text-sm tracking-[0.5em] uppercase text-primary/80"
+          >
+            Capturing Moments • Creating Memories
+          </motion.p>
+        </div>
+        
+        <div className="overflow-hidden">
+          <motion.h1
+            initial={{ y: "100%" }}
+            animate={{ y: 0 }}
+            transition={{ delay: 0.7, duration: 1, ease: "circOut" }}
+            className="font-display text-5xl md:text-8xl lg:text-9xl font-bold text-foreground leading-[0.9] tracking-tighter"
+          >
+            F8<span className="gold-text-gradient italic">PRO</span>
+          </motion.h1>
+        </div>
+
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 1.2, duration: 1 }}
+          className="w-24 h-[1px] bg-primary/40 my-8"
+        />
+
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5, duration: 0.8 }}
-          className="font-body text-sm tracking-[0.4em] uppercase text-primary mb-6"
+          transition={{ delay: 1.4, duration: 0.8 }}
+          className="font-body text-base md:text-xl text-muted-foreground/80 max-w-xl mt-4 leading-relaxed font-light"
         >
-          Capturing Moments • Creating Memories
-        </motion.p>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.8, duration: 1 }}
-          className="font-display text-4xl md:text-6xl lg:text-7xl font-bold text-foreground max-w-4xl leading-tight"
-        >
-          Capture Your Best Moments With{" "}
-          <span className="gold-text-gradient">F8pro</span>
-        </motion.h1>
-
-        <motion.p
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.2, duration: 0.8 }}
-          className="font-body text-base md:text-lg text-muted-foreground max-w-2xl mt-6 leading-relaxed"
-        >
-          Professional photography studio in Vijayawada delivering high-quality photos
-          with creativity, modern equipment, and expert guidance.
+          Premier photography and cinematic studio in Jubilee Hills, Hyderabad. 
+          Where art meets high-end technology.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 1.5, duration: 0.8 }}
-          className="flex flex-col sm:flex-row gap-4 mt-10"
+          transition={{ delay: 1.7, duration: 0.8 }}
+          className="flex flex-col sm:flex-row gap-6 mt-12"
         >
           <a
             href="#portfolio"
-            className="gold-gradient text-primary-foreground px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover:opacity-90 transition-opacity"
+            className="gold-gradient text-primary-foreground px-10 py-4 rounded-full font-body text-xs tracking-[0.2em] uppercase hover-glow transition-all"
           >
-            View Portfolio
+            Exploration
           </a>
           <a
             href="#contact"
-            className="border border-primary text-primary px-8 py-3.5 rounded-sm font-body text-sm tracking-widest uppercase hover:bg-primary hover:text-primary-foreground transition-all duration-300"
+            className="bg-white/5 backdrop-blur-md border border-white/10 text-white px-10 py-4 rounded-full font-body text-xs tracking-[0.2em] uppercase hover:bg-white/10 transition-all"
           >
-            Book a Session
+            Consultation
           </a>
         </motion.div>
       </div>

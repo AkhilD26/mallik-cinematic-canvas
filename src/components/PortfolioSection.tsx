@@ -13,14 +13,14 @@ import heroBg from "@/assets/hero-bg.jpg";
 const categories = ["All", "Portraits", "Wedding", "Studio", "Events", "Restoration"];
 
 const portfolioItems = [
-  { src: portrait1, category: "Portraits", title: "Elegant Portrait" },
-  { src: wedding1, category: "Wedding", title: "Traditional Wedding" },
-  { src: professional1, category: "Portraits", title: "Professional Headshot" },
-  { src: event1, category: "Events", title: "Cultural Celebration" },
-  { src: studioInterior, category: "Studio", title: "Studio Setup" },
-  { src: family1, category: "Portraits", title: "Family Portrait" },
-  { src: restoration1, category: "Restoration", title: "Photo Restoration" },
-  { src: heroBg, category: "Studio", title: "Studio Workspace" },
+  { src: portrait1, category: "Portraits", title: "Grace in Shadow", size: "tall" },
+  { src: wedding1, category: "Wedding", title: "Eternal Vows", size: "wide" },
+  { src: professional1, category: "Portraits", title: "The Architect", size: "small" },
+  { src: event1, category: "Events", title: "Vibrant Pulse", size: "small" },
+  { src: studioInterior, category: "Studio", title: "The Sanctuary", size: "wide" },
+  { src: family1, category: "Portraits", title: "Rooted Legacies", size: "tall" },
+  { src: restoration1, category: "Restoration", title: "Echoes Refined", size: "small" },
+  { src: heroBg, category: "Studio", title: "Master's Canvas", size: "small" },
 ];
 
 const PortfolioSection = () => {
@@ -40,61 +40,67 @@ const PortfolioSection = () => {
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
+          className="max-w-3xl mb-16"
         >
-          <p className="font-body text-sm tracking-[0.3em] uppercase text-primary mb-4">Our Work</p>
-          <h2 className="font-display text-3xl md:text-5xl font-bold text-foreground">
-            Featured <span className="gold-text-gradient">Portfolio</span>
+          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-4">The Gallery</p>
+          <h2 className="font-display text-4xl md:text-7xl font-bold text-foreground leading-tight">
+            Curated <span className="gold-text-gradient italic">Frames</span>
           </h2>
         </motion.div>
 
         {/* Category filters */}
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex flex-wrap justify-center gap-3 mb-12"
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 1, delay: 0.2 }}
+          className="flex flex-wrap gap-6 mb-16 border-b border-white/5 pb-8"
         >
           {categories.map((cat) => (
             <button
               key={cat}
               onClick={() => setActiveCategory(cat)}
-              className={`font-body text-sm tracking-wider uppercase px-5 py-2 rounded-sm transition-all duration-300 ${
-                activeCategory === cat
-                  ? "gold-gradient text-primary-foreground"
-                  : "border border-border text-muted-foreground hover:border-primary hover:text-primary"
+              className={`font-body text-[0.65rem] tracking-[0.3em] uppercase transition-all duration-300 relative group overflow-hidden ${
+                activeCategory === cat ? "text-primary" : "text-muted-foreground hover:text-foreground"
               }`}
             >
               {cat}
+              <span className={`absolute bottom-0 left-0 w-full h-[1px] bg-primary transition-transform duration-500 ${
+                activeCategory === cat ? "scale-x-100" : "scale-x-0 group-hover:scale-x-100"
+              }`} />
             </button>
           ))}
         </motion.div>
 
-        {/* Masonry grid */}
-        <div className="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
+        {/* Bespoke Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 auto-rows-[300px]">
           <AnimatePresence mode="popLayout">
             {filtered.map((item, i) => (
               <motion.div
                 key={item.title}
                 layout
-                initial={{ opacity: 0, scale: 0.9 }}
+                initial={{ opacity: 0, scale: 0.95 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.9 }}
-                transition={{ duration: 0.4, delay: i * 0.05 }}
-                className="group relative break-inside-avoid cursor-pointer overflow-hidden rounded-sm hover-glow"
+                exit={{ opacity: 0, scale: 0.95 }}
+                transition={{ duration: 0.6, delay: i * 0.05, ease: [0.22, 1, 0.36, 1] }}
+                className={`group relative cursor-pointer overflow-hidden rounded-2xl hover-glow ${
+                  item.size === "tall" ? "lg:row-span-2" : 
+                  item.size === "wide" ? "lg:col-span-2" : ""
+                }`}
                 onClick={() => setLightbox(item.src)}
               >
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="w-full object-cover transition-transform duration-700 group-hover:scale-110"
+                  className="w-full h-full object-cover transition-all duration-1000 grayscale-[40%] group-hover:grayscale-0 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-background/0 group-hover:bg-background/50 transition-all duration-500 flex items-end">
-                  <div className="p-4 translate-y-full group-hover:translate-y-0 transition-transform duration-500">
-                    <p className="font-display text-lg text-foreground">{item.title}</p>
-                    <p className="font-body text-xs tracking-wider uppercase text-primary">{item.category}</p>
-                  </div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
+                  <motion.p className="font-display text-2xl text-foreground mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                    {item.title}
+                  </motion.p>
+                  <motion.p className="font-body text-[0.6rem] tracking-[0.3em] uppercase text-primary/80 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                    {item.category} — View
+                  </motion.p>
                 </div>
               </motion.div>
             ))}

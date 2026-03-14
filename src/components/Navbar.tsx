@@ -13,24 +13,39 @@ const navLinks = [
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
+  const [visible, setVisible] = useState(true);
+  const [lastScrollY, setLastScrollY] = useState(0);
   const [mobileOpen, setMobileOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 50);
-    window.addEventListener("scroll", handleScroll);
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+      setScrolled(currentScrollY > 50);
+      
+      if (currentScrollY > lastScrollY && currentScrollY > 100) {
+        setVisible(false);
+      } else {
+        setVisible(true);
+      }
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [lastScrollY]);
 
   return (
     <motion.nav
       initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
-        scrolled ? "bg-background/95 backdrop-blur-md border-b border-border" : "bg-transparent"
+      animate={{ y: visible ? 0 : -100 }}
+      transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 px-6 py-4 ${
+        scrolled ? "mt-4" : "mt-0"
       }`}
     >
-      <div className="container mx-auto px-6 py-4 flex items-center justify-between">
+      <div className={`container mx-auto px-8 py-4 flex items-center justify-between rounded-full transition-all duration-500 ${
+        scrolled ? "bg-background/80 backdrop-blur-xl border border-white/5 shadow-2xl" : "bg-transparent"
+      }`}>
         <a href="#home" className="font-display text-2xl font-bold text-foreground">
           F8<span className="text-primary">pro</span>
         </a>
@@ -41,17 +56,17 @@ const Navbar = () => {
             <a
               key={link.label}
               href={link.href}
-              className="font-body text-sm tracking-widest uppercase text-muted-foreground hover:text-primary transition-colors duration-300"
+              className="font-body text-[0.7rem] tracking-[0.2em] uppercase text-muted-foreground hover:text-primary transition-all duration-300 luxury-link"
             >
               {link.label}
             </a>
           ))}
           <a
             href="tel:+918897888811"
-            className="flex items-center gap-2 gold-gradient text-primary-foreground px-5 py-2.5 rounded-sm font-body text-sm tracking-wider uppercase hover:opacity-90 transition-opacity"
+            className="flex items-center gap-2 gold-gradient text-primary-foreground px-6 py-2.5 rounded-full font-body text-[0.7rem] tracking-[0.15em] uppercase hover-glow transition-all"
           >
-            <Phone size={14} />
-            Call Now
+            <Phone size={12} />
+            Connect
           </a>
         </div>
 
