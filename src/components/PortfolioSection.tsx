@@ -41,12 +41,15 @@ const PortfolioSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-3xl mb-16"
+          className="mb-24"
         >
-          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-4">The Gallery</p>
-          <h2 className="font-display text-4xl md:text-7xl font-bold text-foreground leading-tight">
-            Curated <span className="gold-text-gradient italic">Frames</span>
+          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-8">Visual Anthology</p>
+          <h2 className="text-huge text-foreground">
+            THE <span className="gold-text-gradient italic">GALLERY</span>
           </h2>
+          <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40 mt-4">
+            A curated selection of our finest work
+          </p>
         </motion.div>
 
         {/* Category filters */}
@@ -92,15 +95,19 @@ const PortfolioSection = () => {
                 <img
                   src={item.src}
                   alt={item.title}
-                  className="w-full h-full object-cover transition-all duration-1000 grayscale-[40%] group-hover:grayscale-0 group-hover:scale-105"
+                  className="w-full h-full object-cover transition-all duration-1000 grayscale-[40%] group-hover:grayscale-0 group-hover:scale-110"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700 flex flex-col justify-end p-8">
-                  <motion.p className="font-display text-2xl text-foreground mb-1 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                    {item.title}
-                  </motion.p>
-                  <motion.p className="font-body text-[0.6rem] tracking-[0.3em] uppercase text-primary/80 transform translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                    {item.category} — View
-                  </motion.p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8">
+                  <div className="overflow-hidden">
+                    <motion.p className="font-display text-2xl text-foreground mb-1 transform translate-y-full group-hover:translate-y-0 transition-transform duration-500">
+                      {item.title}
+                    </motion.p>
+                  </div>
+                  <div className="overflow-hidden">
+                    <motion.p className="font-body text-[0.6rem] tracking-[0.3em] uppercase text-primary transform translate-y-full group-hover:translate-y-0 transition-transform duration-500 delay-100">
+                      {item.category} — View
+                    </motion.p>
+                  </div>
                 </div>
               </motion.div>
             ))}

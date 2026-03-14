@@ -1,7 +1,16 @@
-import { motion, useScroll, useTransform } from "framer-motion";
-import { useRef } from "react";
+import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { useRef, useState, useEffect } from "react";
 import { ChevronDown } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import portrait1 from "@/assets/portrait-1.jpg";
+import wedding1 from "@/assets/wedding-1.jpg";
+import professional1 from "@/assets/professional-1.jpg";
+
+const slides = [
+  { image: heroBg, title: "F8PRO" },
+  { image: wedding1, title: "LEGACY" },
+  { image: professional1, title: "VISION" },
+];
 
 const HeroSection = () => {
   const containerRef = useRef(null);
@@ -10,9 +19,17 @@ const HeroSection = () => {
     offset: ["start start", "end start"],
   });
 
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "30%"]);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setCurrentSlide((prev) => (prev + 1) % slides.length);
+    }, 6000);
+    return () => clearInterval(timer);
+  }, []);
+
+  const y = useTransform(scrollYProgress, [0, 1], ["0%", "20%"]);
   const opacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   return (
     <section 
@@ -20,16 +37,24 @@ const HeroSection = () => {
       ref={containerRef}
       className="relative h-screen w-full overflow-hidden flex items-center justify-center"
     >
-      {/* Background with Parallax */}
-      <motion.div
-        style={{ y, scale, opacity }}
-        className="absolute inset-0 z-0"
-      >
-        <img 
-          src={heroBg} 
-          alt="F8pro Studio" 
-          className="w-full h-full object-cover grayscale-[20%] brightness-[0.4]" 
-        />
+      {/* Background Slider with Parallax & Ken Burns */}
+      <motion.div style={{ y, opacity }} className="absolute inset-0 z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={currentSlide}
+            initial={{ opacity: 0, scale: 1.15 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 2.5, ease: "easeOut" }}
+            className="absolute inset-0"
+          >
+            <img 
+              src={slides[currentSlide].image} 
+              alt="F8pro Cinematic" 
+              className="w-full h-full object-cover grayscale-[15%] brightness-[0.35]" 
+            />
+          </motion.div>
+        </AnimatePresence>
       </motion.div>
 
       {/* Overlays */}

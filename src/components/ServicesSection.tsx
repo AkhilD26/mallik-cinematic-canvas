@@ -31,12 +31,15 @@ const ServicesSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 1, ease: [0.22, 1, 0.36, 1] }}
-          className="max-w-2xl mb-20"
+          className="mb-24"
         >
-          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-4">Expertise</p>
-          <h2 className="font-display text-4xl md:text-7xl font-bold text-foreground leading-tight">
-            Cinematic <span className="gold-text-gradient italic">Offerings</span>
+          <p className="font-body text-xs tracking-[0.5em] uppercase text-primary/60 mb-8">Crafting Excellence</p>
+          <h2 className="text-huge text-foreground">
+            OUR <span className="gold-text-gradient italic">OFFERINGS</span>
           </h2>
+          <p className="font-body text-[0.6rem] tracking-[0.2em] uppercase text-muted-foreground/40 mt-4">
+            Bespoke photography for the discerning client
+          </p>
         </motion.div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
